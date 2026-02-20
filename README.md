@@ -6,7 +6,7 @@ Manage tasks directly from your terminal with a clean command interface and laye
 
 ⚡ Installation
 ```bash
-git clone https://github.com/srikant-panda/tasktracker-cli
+git clone https://github.com/srikant-panda/tasktracker-cli.git
 cd tasktracker
 pip install -e .
 ```
