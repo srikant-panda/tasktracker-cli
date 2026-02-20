@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tasktracker"
+version = "0.1.0"
+description = "A simple CLI task manager"
+authors = [{ name="Your Name" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "tabulate"
+]
+
+[project.scripts]
+tasktracker = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.setuptools.package-dir]
+"" = "."
