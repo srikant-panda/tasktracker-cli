@@ -23,13 +23,14 @@ tasktracker mark 1 done
 tasktracker delete 1
 
 Available statuses:
-
+```bash
 todo
 
 in-progress
 
 done
-
+```
+``` bash
 🏗️ Project Structure
 tasktracker/
 ├── pyproject.toml
@@ -41,7 +42,7 @@ tasktracker/
     ├── style.py
     ├── task_entities_config.py
     └── storage/task.json
-
+```
 __pycache__ and *.egg-info are auto-generated and should be ignored.
 
 🧠 Architecture
