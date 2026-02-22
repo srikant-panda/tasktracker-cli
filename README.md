@@ -2,10 +2,12 @@
 
 A modular, pip-installable CLI task manager built with Python.
 
-Manage tasks directly from your terminal with a clean command interface and layered architecture.
+Designed with clean architecture principles and a src/ layout, this project demonstrates separation of concerns, structured layering, and JSON-based persistence.
 
-⚡ Installation
-```bash
+📦 Installation
+
+Clone and install in editable mode:
+
 git clone https://github.com/your-username/tasktracker.git
 cd tasktracker
 pip install -e .
@@ -78,5 +80,38 @@ Database Layer → JSON persistence
 
 Style Layer → Output formatting
 
-This separation improves maintainability, clarity, and future scalability.
-```
+This ensures:
+
+Maintainability
+
+Clear responsibility boundaries
+
+Easier future testing
+
+Scalability
+
+💾 Storage
+
+Tasks are stored in:
+
+src/storage/task.json
+
+Example:
+
+{
+  "id": 1,
+  "description": "Learn Python",
+  "status": "todo",
+  "created_at": "2026-02-20 10:00:00"
+}
+🛠 Tech Stack
+
+Python 3.10+
+
+argparse
+
+tabulate
+
+JSON persistence
+
+pyproject.toml packaging
