@@ -1,11 +1,12 @@
 '''_____________Databse storage management_____________'''
 import os
 import json
+from typing import List,Dict,Any
 
 
 
 class Task_database:
-    def __init__(self):
+    def __init__(self) -> None:
         self.filepath = os.path.join(os.path.dirname(__file__),'storage','task.json')
     
         try:
@@ -23,16 +24,16 @@ class Task_database:
             with open(self.filepath,'w') as f:
                 json.dump(self.tasks,f,indent=4)
 
-    def save(self):
+    def save(self) -> None:
         with open(self.filepath,'w') as f:
             # f.write('[]')
             json.dump(self.tasks,f,indent=4)
-    def reload(self):
+    def reload(self) -> List[Dict[Any,Any]]:
         with open(self.filepath,'r') as f:
             # print(self.tasks,'hello')
             self.tasks = json.load(f)
             return self.tasks    
-    def save_And_reload(self):
+    def save_And_reload(self) -> List[Dict[Any,Any]]:
         self.save()
         self.reload()
         return self.tasks

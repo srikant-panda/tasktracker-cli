@@ -1,60 +1,48 @@
-import src.operations as TO
-import src.cli as cli
-import src.style as style
+from src import TO, parse_args, style
 
 
+def main() -> int:
+    args = parse_args()
 
-def main():
-    pass
+    if args.command == "add":
+        result = TO.add_task(args.description)
+        print("------------------------------added task---------------------------------------")
+        style.style_table(result)
+        return 0
 
-if cli.c == 'add':
-    success = False
-    for i in range(len(cli.a)):
-        try:
-            c = TO.add_task(cli.a[i])
-            success = True
-        except:
-            print("Somethong wrong happend try again!")
-    if success:
-        print('Task created')
-        print('------------------------------added task---------------------------------------')
-        style.style_table(c)
-elif cli.c == 'update':
-    try:
-        c = TO.update_task(int(cli.u1),cli.u2)
-        style.style_table(c)    
-    except:
-        print("Somthing wrong happend try again!")
-elif cli.c == 'delete':
-    success = False
-    try:
-        c = TO.delete_task(cli.d)
-        success = True
-    except Exception as e:
-            print(e)
-    except Exception as e:
-            print("Somthing wrong happend try again!",e)
-    if success:
-        print('-----------------------------current task--------------------------------------')
-        style.style_table(c)
-elif cli.c == 'list':
-    try:
-        c = TO.list_tasks(cli.l)
-        style.style_table(c)
-    except Exception as e:
-        print("Somthing wrong happend try again!",e)
-elif cli.c == 'mark-in-progress':
-    try:
-        TO.mark_task(id =int(cli.m),status='in-progress')
-    except Exception as e:
-        print(e)
-elif cli.c == 'mark-done':
-    try:
-        TO.mark_task(id=int(cli.m),status='done')
-    except:
-        print("Somthing wrong happend try again!")
-elif cli.c == 'mark-todo':
-    try:
-        TO.mark_task(id=int(cli.m),status='todo')
-    except:
-        print("Somthing wrong happend try again!")
+    if args.command == "update":
+        result = TO.update_task(args.id, args.description)
+        if result is None:
+            print("Task not found.")
+            return 1
+        style.style_table(result)
+        return 0
+
+    if args.command == "delete":
+        result = TO.delete_task(args.id)
+        print("-----------------------------current task--------------------------------------")
+        style.style_table(result)
+        return 0
+
+    if args.command == "list":
+        result = TO.list_tasks(args.type)
+        style.style_table(result)
+        return 0
+
+    if args.command == "mark-in-progress":
+        changed = TO.mark_task(id=args.id, status="in-progress")
+        return 0 if changed is not None else 1
+
+    if args.command == "mark-done":
+        changed = TO.mark_task(id=args.id, status="done")
+        return 0 if changed is not None else 1
+
+    if args.command == "mark-todo":
+        changed = TO.mark_task(id=args.id, status="todo")
+        return 0 if changed is not None else 1
+
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
