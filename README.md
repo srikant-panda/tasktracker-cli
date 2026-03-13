@@ -23,6 +23,30 @@ git clone https://github.com/srikant-panda/tasktracker-cli.git
 cd tasktracker-cli
 pip install -e .
 ```
+## Project Structure
+
+```text
+tasktracker-cli/
+├── __init__.py
+├── main.py
+├── pyproject.toml
+├── README.md
+├── src/
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── database.py
+│   ├── model.py
+│   ├── operations.py
+│   ├── style.py
+│   └── storage/
+│       └── task.json
+└── tests/
+	├── test_cli.py
+	├── test_database.py
+	├── test_model.py
+	└── test_operations.py
+```
+
 
 ## CLI Usage
 
@@ -81,3 +105,4 @@ src/storage/task.json
 ```bash
 python -m unittest discover -s tests -v
 ```
+
