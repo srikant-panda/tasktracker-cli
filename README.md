@@ -2,11 +2,7 @@
 
 A terminal task manager built with Python and packaged as a CLI app.
 
-## Quick Demo
 
-Create, update, mark, and delete in one short terminal flow:
-
-![Tasktracker terminal demo](assets/tasktracker-demo.gif)
 
 ## Features
 
