@@ -2,8 +2,6 @@
 
 A terminal task manager built with Python and packaged as a CLI app.
 
-
-
 ## Features
 
 - Add, list, update, mark, and delete tasks
