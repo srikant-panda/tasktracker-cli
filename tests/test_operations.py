@@ -39,13 +39,12 @@ class TestOperations(unittest.TestCase):
 
     def test_add_task_creates_and_persists_tasks(self):
         initial_count = len(FakeTaskDatabase.store)
-        added = operations.add_task(["new a", "new b"])
+        added = operations.add_task("new a")
 
-        self.assertEqual(len(added), 2)
-        self.assertEqual(len(FakeTaskDatabase.store), initial_count + 2)
-        self.assertEqual(FakeTaskDatabase.store[-1]["description"], "new b")
+        self.assertEqual(len(FakeTaskDatabase.store), initial_count + 1)
+        self.assertEqual(FakeTaskDatabase.store[-1]["description"], "new a")
         self.assertEqual(FakeTaskDatabase.store[-1]["status"], "todo")
-        self.assertIsInstance(added[0]["id"], UUID)
+        self.assertIsInstance(added["id"], UUID)
 
     def test_list_tasks_filters_by_status(self):
         todo_tasks = operations.list_tasks("todo")

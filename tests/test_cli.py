@@ -7,10 +7,10 @@ from src.cli import parse_args
 
 class TestCliParser(unittest.TestCase):
     def test_add_command_parses_description_tokens(self):
-        with patch.object(sys, "argv", ["task", "add", "learn", "python"]):
+        with patch.object(sys, "argv", ["task", "add", "learn python"]):
             args = parse_args()
         self.assertEqual(args.command, "add")
-        self.assertEqual(args.description, ["learn", "python"])
+        self.assertEqual(args.description, "learn python")
 
     def test_list_command_defaults_to_all(self):
         with patch.object(sys, "argv", ["task", "list"]):

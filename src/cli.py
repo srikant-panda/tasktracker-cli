@@ -71,15 +71,14 @@ def parse_args():
     parser = argparse.ArgumentParser(prog='task')
     subparser = parser.add_subparsers(dest="command", required=True)
 
-    add_parser = subparser.add_parser('add')
+    add_parser = subparser.add_parser('add',help="To add a task")
     add_parser.add_argument(
         'description',
-        nargs='+',
         type=str,
-        help="Write one or more tasks"
+        help="Write one task"
     )
 
-    list_parser = subparser.add_parser('list')
+    list_parser = subparser.add_parser('list',help="To list task \"default is all\"")
     list_parser.add_argument(
         "type",
         nargs="?",
@@ -88,12 +87,12 @@ def parse_args():
         help="Filter tasks"
     )
 
-    update_parser = subparser.add_parser('update')
+    update_parser = subparser.add_parser('update',help="To update a task.")
     update_parser.add_argument('id', type=str, help="Task id to update")
     update_parser.add_argument('description', type=str, help="New task description")
 
-    delete_parser = subparser.add_parser('delete')
-    delete_parser.add_argument('id', type=str, help="Task id to delete")
+    delete_parser = subparser.add_parser('delete',help="To delete a task")
+    delete_parser.add_argument('id', type=str, help="Task id to delete or \\* to delete all task at once")
 
     mark_in_progress_parser = subparser.add_parser('mark-in-progress', help="Mark task as in-progress")
     mark_in_progress_parser.add_argument('id', type=str, help="Task id to mark in-progress")
@@ -108,4 +107,5 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    print(args)
+    print('Cli')
+    print(type(args.description))

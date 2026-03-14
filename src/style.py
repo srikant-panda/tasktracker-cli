@@ -10,7 +10,7 @@ def style_table(data=None):
                print('No task added!')
         else:
                 if not isinstance(data,list):
-                        print(data)
+                        # print(data)
                         data = [data]
                 print(tabulate(data, headers='keys', tablefmt="fancy_grid"))
     except TypeError as e:

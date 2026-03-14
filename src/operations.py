@@ -1,20 +1,21 @@
 from .database  import Task_database as TD
-# from . import task_entities_config as tec
 from .model import TaskModel
 from typing import List,Literal,Union,Dict,Any
 
-def add_task(description : List[str]) -> List[Dict[Any,Any]]:
+
+
+def add_task(description : str) -> Union[Dict[Any,Any],str]:
     db = TD()
     db.reload()
-    added_tasks : List[Dict[Any,Any]] = []
-    for i in description:
-        task = TaskModel(description = i)
-        added_tasks.append(task.model_dump())
-        db.tasks.append(task.model_dump(mode='json'))
+    if len(description) == 0:
+        return "Error : Description should not be empty."
+    
+    task = TaskModel(description = description)
+    db.tasks.append(task.model_dump(mode='json'))
     db.save_And_reload()
-    # print(task)
-    # print(type(task))
-    return added_tasks
+  
+    return task.model_dump()
+    
 def list_tasks(status : Literal['todo','in-progress','done']) -> List[Dict[Any,Any]]:
     db = TD()
     if status == "todo":
@@ -39,6 +40,10 @@ def update_task(id : str,updated_description : str) -> Union[None,dict]:
 def delete_task(id : str) -> List[Dict[Any,Any]]:
     db = TD()
     """_____to delete a task____"""
+    if id == "*":
+        db.tasks = []
+        print("All task deleted.")
+        return db.save_And_reload()
     for index , value in enumerate(db.tasks):
         if value['id'] == id:
             db.tasks.pop(index)
@@ -58,7 +63,7 @@ def mark_task(id : str,status : str) -> Union[bool,None]:
             print(f"Task updated.")
             db.save_And_reload()
             return True
-
+        
 if __name__ == '__main__':
-   x = add_task(["Hello bachho"])
+   x = add_task("Hello bachho")
    print(x)

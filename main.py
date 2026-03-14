@@ -1,14 +1,21 @@
 from src import TO, parse_args, style
 
 
-def main() -> int:
+def main() -> int :
     args = parse_args()
 
     if args.command == "add":
-        result = TO.add_task(args.description)
-        print("------------------------------added task---------------------------------------")
-        style.style_table(result)
-        return 0
+        try:
+            result = TO.add_task(args.description)
+            if type(result) == str:
+                print(result)
+                return 1
+            else:
+                print("------------------------------added task---------------------------------------")
+                style.style_table(result)
+                return 0
+        except Exception as e:
+            print(str(e))
 
     if args.command == "update":
         result = TO.update_task(args.id, args.description)

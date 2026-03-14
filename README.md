@@ -54,7 +54,6 @@ Add tasks:
 
 ```bash
 tasktracker add "Learn backend architecture"
-tasktracker add "Write tests" "Push project"
 ```
 
 List tasks:
@@ -84,6 +83,7 @@ Delete a task:
 
 ```bash
 tasktracker delete <task-id>
+tasktracker delete \*
 ```
 
 ## Storage
